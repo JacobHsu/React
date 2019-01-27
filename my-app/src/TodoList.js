@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem'
 
 class TodoList extends Component {
@@ -55,13 +55,13 @@ class TodoList extends Component {
   }
   render() {
     return (
-      <div>
+      <Fragment>
         <input value={this.state.inputValue} onChange={this.handleInputChange}/>
-        <button onClick={this.handleBtnClick}>add</button>
+        <button className="btn" onClick={this.handleBtnClick}>add</button>
           <ul>
             {this.getTodoItem()}
           </ul>
-      </div>
+      </Fragment>
     );
   }
 }

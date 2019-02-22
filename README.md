@@ -10,3 +10,17 @@ npx create-react-app my-app
 cd my-app
 npm start
 ```
+
+## mock 
+
+### public
+public\mock\data.json   
+http://localhost:3000/mock/data.json  
+
+### [serve](https://www.npmjs.com/package/serve) 
+`npm i -g serve`
+
+test\api\data.json 
+$ react\test> serve  
+http://localhost:5000/api/data.json  
+

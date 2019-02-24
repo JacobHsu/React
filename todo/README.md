@@ -4,6 +4,20 @@ App.js `rcc`
 > extensions Reactjs code snippets  
 
 
+State 代表UI的完整且最小的狀態集合  
+是否可以透過其他state或props計算得到? 可以，為冗餘狀態(非最小) 非state
+
+Todo State
+> 待辦事項列表 新增輸入框中的文本  當前篩選條件
+
+如果某個state被多個組件依賴，尋找共同的父組件(狀態上移)
+
+### Note
+
+Q: `onClick={onClick}` Line 8:  'onClick' is not defined  no-undef  
+> `const { completed, text, onClick } = this.props;` or `onClick={this.onClick}` 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

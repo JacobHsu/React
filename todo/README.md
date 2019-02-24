@@ -1,4 +1,4 @@
-App -> TodoList -> Todo -> AddTodo -> Footer  
+自上而下開發 App -> TodoList -> Todo -> AddTodo -> Footer  
 
 App.js `rcc` 
 > extensions Reactjs code snippets  

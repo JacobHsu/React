@@ -10,7 +10,29 @@ State 代表UI的完整且最小的狀態集合
 Todo State
 > 待辦事項列表 新增輸入框中的文本  當前篩選條件
 
-如果某個state被多個組件依賴，尋找共同的父組件(狀態上移)
+如果某個state被多個組件依賴，尋找共同的父組件(狀態上移) 
+
+state 
+App.js `todos` `filter` state   
+AddTodo.js `text` state
+
+redux
+```
+{
+    text: '',
+    todos: [
+        {
+            id: 1,
+            text:'學習react',
+            completed: true
+        }
+    ],
+    filter:'all'
+}
+```
+學會定義react state 再去定義 redux
+
+actions 描述如何修改狀態
 
 ### Note
 

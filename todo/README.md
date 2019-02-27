@@ -34,6 +34,9 @@ redux
 
 actions 描述如何修改狀態
 
+`$ npm install redux`
+> import {combineReducers} from 'redux'
+
 ### Note
 
 Q: `onClick={onClick}` Line 8:  'onClick' is not defined  no-undef  

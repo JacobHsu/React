@@ -11,7 +11,7 @@ let nextTodoId = 0;
  * @param {*} text
  */
 export const addTodo = text => ({
-  type: ADD_TODO //"ADD_TODO",
+  type: ADD_TODO, //"ADD_TODO",
   id: nextTodoId++,
   text
 });

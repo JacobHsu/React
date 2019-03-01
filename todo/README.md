@@ -34,8 +34,36 @@ redux
 
 actions 描述如何修改狀態
 
+
+
+### reducer
+
+reducer是個函數 接收當前redux的state和action
+根據state和action進行計算，從而得到新的state  
+
+> previous state & action -> reducer() -> new state  
+
+可以把reducer理解成action的解析器  
+action描述了 我要如何修改一個state  
+reducer將這個描述落實到代碼層面，對state進行真正的修改  
+
+combineReducers 為 redux api 使用前要先安裝redux的依賴  
 `$ npm install redux`
 > import {combineReducers} from 'redux'
+
+### store  
+
+action -> store (黏合劑) <- state 
+    dispatch          getState / subscribe
+reducer -> store(黏合劑)  
+    cteateStore 
+
+
+react 與 redux 是如何結合到一起
+與store訂閱機制基本類似  
+react的view層 會監聽store當中的state變化  
+當變化會使用新的state，重新去渲染視圖層
+為了讓監聽和視圖層的渲染過程更加簡潔易操作  react提供react-redux第三方庫 將監聽的行為進行封裝(容器型組件拆分)  
 
 ### Note
 

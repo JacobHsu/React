@@ -16,6 +16,14 @@ state
 App.js `todos` `filter` state   
 AddTodo.js `text` state
 
+###  redux
+
+在組件使用redux時 要將組件化為兩類  
+components 展示型組件 關注UI  
+containers 容器型組件 關注data  
+
+連接redux層時，應在較低層級的react組件進行連接，以減少不必要的組件渲染
+
 redux
 ```
 {
@@ -32,11 +40,15 @@ redux
 ```
 學會定義react state 再去定義 redux
 
-actions 描述如何修改狀態
+### actions 
 
-
+描述如何修改狀態  
+JSON對象 type屬性必需
+發送  store.dispatch    
 
 ### reducer
+
+reducer 是 action的解析器  
 
 reducer是個函數 接收當前redux的state和action
 根據state和action進行計算，從而得到新的state  
@@ -65,10 +77,30 @@ react的view層 會監聽store當中的state變化
 當變化會使用新的state，重新去渲染視圖層
 為了讓監聽和視圖層的渲染過程更加簡潔易操作  react提供react-redux第三方庫 將監聽的行為進行封裝(容器型組件拆分)  
 
+# react-redux
+
+向根組件注入Store -> Provider組件
+連接React組件和Redux狀態層 -> connect 
+獲取React組件所需的state和Actions -> map api
+
+|   |    展示型組件       |  容器型組件 |
+|----------|:-------------:|------:|
+| 關注點 |  UI的展現   | 邏輯(讀數據，更新狀態) |
+| redux層感知|    否       |   是 |
+| 讀數據 | 從props中獲取 |    從redux store中獲取 |
+| 寫數據 | 通過prop傳遞的回調 |    發送redux actions |
+| 如何創建 | 手寫        |    通過react-redux創建 |
+
+`$ npm install react-redux`
+
 ### Note
 
 Q: `onClick={onClick}` Line 8:  'onClick' is not defined  no-undef  
 > `const { completed, text, onClick } = this.props;` or `onClick={this.onClick}` 
+
+Q: Warning: Each child in a list should have a unique "key" prop.
+> src/reducers/todos.js   case ADD_TODO:   id: action.id,
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

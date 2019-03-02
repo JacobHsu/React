@@ -2,15 +2,22 @@
 // action的處理器：reducer
 import {ADD_TODO, TOGGLE_TODO, SET_FILTER, SET_TODO_TEXT} from './actionTypes';
 
+// action 的 json對象例
+// var addTodoAction = {
+//   type: 'ADD_TODO',
+//   id: 1,
+//   text: 'Learn React'
+// }
+// 實際開發會創建 action creator  //一個函數返回action //ex: export const addTodo
+
+
 let nextTodoId = 0;
-
-
 
 /**
  * 新增待辦事項
  * @param {*} text
  */
-export const addTodo = text => ({
+export const addTodo = (text) => ({
   type: ADD_TODO, //"ADD_TODO",
   id: nextTodoId++,
   text

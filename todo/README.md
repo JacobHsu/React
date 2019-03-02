@@ -93,6 +93,15 @@ react的view層 會監聽store當中的state變化
 
 `$ npm install react-redux`
 
+# 異步 action
+
+redux-thunk改寫了dispatch API，使其具備接受一個函數作為參數的能力，從而達到middleware的效果，  
+
+即在redux的dispatch action => reducer => store這個流程中，在action 被發起之後，
+到達 reducer 之前的擴展點，加入相關操作，比如發生請求、log等。
+
+`$ npm install redux-thunk`
+
 ### Note
 
 Q: `onClick={onClick}` Line 8:  'onClick' is not defined  no-undef  

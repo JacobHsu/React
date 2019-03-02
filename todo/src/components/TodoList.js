@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import Todo from "./Todo";
 // 數據都源於 props 不需修改
 class TodoList extends Component {
+
+  componentDidMount() {
+    this.props.fetchTodos(); //掛載時調用異步action  
+  }
+
   render() {  
     const { todos, toggleTodo } = this.props;
     return (

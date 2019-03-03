@@ -10,6 +10,9 @@ npx create-react-app my-app
 cd my-app
 npm start
 ```
+# Tools
+
+[Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)  
 
 ## mock 
 

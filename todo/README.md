@@ -102,6 +102,37 @@ redux-thunk改寫了dispatch API，使其具備接受一個函數作為參數的
 
 `$ npm install redux-thunk`
 
+# Redux項目結構組織方式
+
+按照類型  
+按照功能模塊  
+[Ducks(鴨子)](https://github.com/erikras/ducks-modular-redux)  
+> 劃分模塊依據: 應用狀態state，而不是界面功能  
+
+常見的State設計原則錯誤  
+以API為設計State的依據  
+以頁面UI為設計State的依據  
+> 應像設計資料庫一樣設計State
+
+資料庫設計原則  
+數據按照領域(Domain)分類，存儲在不同的表中，不同的表中存儲的列數據不能重複 
+> 子state之間不能保存重複的數據 
+表中的每一列數據都依賴於這張表的主鍵  
+> State以鍵值對的數據結構存儲數據  
+表中除了主鍵外的其他列，互相之間不能有直接依賴關係  
+> state中不能保存可以通過已有數據計算而來的數據(避免數據冗餘)  
+
+# Selector 函數
+
+選擇器函數 作用是從redux state 讀取部分數據  
+將讀取到的數據給container components 使用  
+container components -(selector)-> redux state  
+
+使用的原因之一
+components代表的view層  
+redux代表的state層  
+分別為獨立的兩個層級，這兩個層級的交互應該是通過接口進行通訊，而非通過state的數據結構形式    
+
 ### Note
 
 Q: `onClick={onClick}` Line 8:  'onClick' is not defined  no-undef  

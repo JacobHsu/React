@@ -9,8 +9,10 @@ import { Provider } from "react-redux";
 import thunkMiddleware from 'redux-thunk'; //處理異步action  
 import rootReducer from "./reducers";
 
+import loggerMiddleware from "./middlewares/logger";
+ 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; //redux-devtools-extension
-const store = createStore(rootReducer,composeEnhancers( applyMiddleware(thunkMiddleware) ));
+const store = createStore(rootReducer,composeEnhancers( applyMiddleware(thunkMiddleware, loggerMiddleware) ));
 
 // 原本的App組件作為Provider的子組件
 // 通過Provider組件 注入redux的store對象 完成 react和 redux的組件 redux的狀態層的連接

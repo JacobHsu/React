@@ -133,6 +133,23 @@ components代表的view層
 redux代表的state層  
 分別為獨立的兩個層級，這兩個層級的交互應該是通過接口進行通訊，而非通過state的數據結構形式    
 
+# B/S Browser/Server
+
+pages -> api -> server (website)  
+page ui -> state -> server (application)
+前後端一體 -> 前後端分離 -> 微服務化(商品服務 用戶服務)  前端頁面| 前端狀態| 中台層| 微服務
+
+# Middleware
+
+redux-thunk  
+增強store dispatch的能力  
+view -> [ mid1 ] ->  [ mid2 ] -> [ mid3 ] -> reducer   
+        [ new dispatch ]
+
+redux 的中間鍵是一個函數
+dispatch的工作是發送action  
+function: ({getState, dispatch}) => next => action  
+
 ### Note
 
 Q: `onClick={onClick}` Line 8:  'onClick' is not defined  no-undef  
@@ -141,7 +158,8 @@ Q: `onClick={onClick}` Line 8:  'onClick' is not defined  no-undef
 Q: Warning: Each child in a list should have a unique "key" prop.
 > src/reducers/todos.js   case ADD_TODO:   id: action.id,
 
-
+Q: middlewares React Error Boundaries  
+> `console.groupEnd();` 錯打 console.groundEnd(); 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

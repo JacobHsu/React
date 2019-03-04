@@ -150,6 +150,15 @@ redux 的中間鍵是一個函數
 dispatch的工作是發送action  
 function: ({getState, dispatch}) => next => action  
 
+# immutable-js
+
+https://github.com/immutable-js/immutable-js  
+
+`$ npm install immutable`  
+`$ npm install redux-immutable` reducers/index.js  3
+
+immutable庫對項目侵入性比較強，要考慮immutable的成本  嵌套層級較少不建議使用  
+
 ### Note
 
 Q: `onClick={onClick}` Line 8:  'onClick' is not defined  no-undef  

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    <title>hexo-theme-doc-seed | connect 和 mapStateToProps </title>
+    <meta name="description" content>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/react/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/react/images/favicon.ico">
+
+    
+
+  </head>
+  <body>
+
+   <script>window.__INITIAL_STATE__ = {"page":{"title":"connect 和 mapStateToProps","path":"connect.html"},"data":{"navigation":{"logo":{"text":"Hello React","type":"link","path":"index.html"},"main":[{"text":"Connect","type":"link","path":"connect.html"},{"text":"SWAGGER","type":"label"},{"text":"UI","type":"link","path":"swagger/ui.html"},{"text":"To HTML","type":"link","path":"swagger/to-html.html"},{"text":"SUPPORT AND FEEDBACK","type":"label"},{"text":"Raise an Issue on Github","type":"link","path":"https://github.bus.zalan.do/stargate/hexo-stargate-doc-theme-seed/issues/new"}]}},"config":{"timezone":"UTC","root":"/react/","time_format":"HH:mm:ss","theme":"../node_modules/hexo-theme-doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot><nav class="doc-navbar"><a href="/react/index.html" class="doc-navbar__logo"><img src="/react/images/logo.png" class="doc-navbar__logo__img"><span class="doc-navbar__logo__text">Hello React</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <h2 id="動手實現-React-redux：connect-和-mapStateToProps"><a href="#動手實現-React-redux：connect-和-mapStateToProps" class="headerlink" title="動手實現 React-redux：connect 和 mapStateToProps"></a>動手實現 React-redux：connect 和 mapStateToProps</h2><p><code>connect</code> 高階組件  可復用的邏輯放在高階組件當中，通過 <code>props</code> 傳遞信息<br><code>mapStateToProps</code> 相當於告知了 Connect 應該如何去 store 裡面取數據  </p>
+<p>觀察一下組件，可以輕易地發現它們有兩個重大的問題：</p>
+<p><strong>有大量重複的邏輯</strong>：它們基本的邏輯都是，取出 context，取出裡面的 store，然後用裡面的狀態設置自己的狀態，這些代碼邏輯其實都是相同的。</p>
+<p>對於第一個問題，<code>高階組件</code>，可以把一些可復用的邏輯放在高階組件當中，高階組件包裝的新組件和原來組件之間通過 <code>props</code> 傳遞信息，減少代碼的重複程度。</p>
+<p><strong>對 context 依賴性過強</strong>：這些組件都要依賴 context 來取數據，使得這個組件復用性基本為零。想一下，如果別人需要用到裡面的 ThemeSwitch 組件，但是他們的組件樹並沒有 context 也沒有 store，他們沒法用這個組件了。</p>
+<p>對於第二個問題，我們得弄清楚一件事情，到底什麼樣的組件才叫復用性強的組件。如果一個組件對外界的依賴過於強，那麼這個組件的<strong>移植性</strong>會很差，就像這些嚴重依賴 context 的組件一樣。</p>
+<h3 id="Pure-Component-Dumb-Component"><a href="#Pure-Component-Dumb-Component" class="headerlink" title="Pure Component (Dumb Component)"></a>Pure Component (Dumb Component)</h3><p>如果一個組件的渲染只依賴於外界傳進去的 <code>props</code> 和自己的 <code>state</code>，而並不依賴於其他的外界的任何數據，也就是說像<strong>純函數</strong>一樣，給它什麼，它就吐出（渲染）什麼出來。這種組件的<strong>復用性</strong>是最強的，別人使用的時候根本不用擔心任何事情，只要看看 PropTypes 它能接受什麼參數，然後把參數傳進去控制它就行了。</p>
+<p>我們把這種組件叫做 <code>Pure Component</code>，因為它就像純函數一樣，可預測性非常強，對參數（props）以外的數據零依賴，也不產生副作用。這種組件也叫 <code>Dumb Component</code>，因為它們呆呆的，讓它幹啥就干啥。寫組件的時候儘量寫 Dumb Component 會提高我們的組件的可復用性。</p>
+<p>我們需要 高階組件幫助我們從 context 取數據，我們也需要寫 Dumb 組件幫助我們提高組件的復用性。所以我們儘量多地寫 Dumb 組件，然後用高階組件把它們包裝一層，高階組件和 context 打交道，把裡面數據取出來通過 props 傳給 Dumb 組件。</p>
+<p>我們把這個高階組件起名字叫 <code>connect</code>，因為它把 Dumb 組件和 context 連接（connect）起來了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> PropTypes <span class="keyword">from</span> <span class="string">'prop-types'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// connect 函數接受一個組件 WrappedComponent 作為參數，把這個組件包含在一個新的組件 Connect 裡面</span></span><br><span class="line"><span class="comment">// Connect 會去 context 裡面取出 store。現在要把 store 裡面的數據取出來通過 props 傳給 WrappedComponent。</span></span><br><span class="line"><span class="keyword">export</span> connect = <span class="function">(<span class="params">WrappedComponent</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Connect</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> contextTypes = &#123;</span><br><span class="line">      store: PropTypes.object</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 如何從 store 取數據？</span></span><br><span class="line"></span><br><span class="line">    render () &#123;</span><br><span class="line">      <span class="keyword">return</span> &lt;WrappedComponent /&gt;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return Connect</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是每個傳進去的組件需要 <code>store</code>裡面的數據都不一樣的，所以除了給高階組件傳入 Dumb 組件以外，<br>還需要告訴高級組件我們需要什麼數據，高階組件才能正確地去取數據。為瞭解決這個問題，我們可以給高階組件傳入類似下面這樣的函數：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mapStateToProps = <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    themeColor: state.themeColor,</span><br><span class="line">    themeName: state.themeName,</span><br><span class="line">    fullName: <span class="string">`<span class="subst">$&#123;state.firstName&#125;</span> <span class="subst">$&#123;state.lastName&#125;</span>`</span></span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>mapStateToProps</code> 相當於告知了 Connect 應該如何去 store 裡面取數據，然後可以把這個函數的返回結果傳給被包裝的組件：</p>
+<p>這個函數會接受 <code>store.getState()</code> 的結果作為參數，然後返回一個對象，這個對象是根據 state 生成的。mapStateTopProps</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> PropTypes <span class="keyword">from</span> <span class="string">'prop-types'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> connect = <span class="function">(<span class="params">mapStateToProps</span>) =&gt;</span> (WrappedComponent) =&gt; &#123;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Connect</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> contextTypes = &#123;</span><br><span class="line">      store: PropTypes.object</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render () &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; store &#125; = <span class="keyword">this</span>.context</span><br><span class="line">      <span class="keyword">let</span> stateProps = mapStateToProps(store.getState())</span><br><span class="line">      <span class="comment">// &#123;...stateProps&#125; 意思是把這個對象裡面的屬性全部通過 `props` 方式傳遞進去</span></span><br><span class="line">      <span class="keyword">return</span> &lt;WrappedComponent &#123;...stateProps&#125; /&gt;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return Connect</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>connect 現在是接受一個參數 mapStateToProps，然後返回一個函數，這個返回的函數才是高階組件。它會接受一個組件作為參數，然後用 Connect 把組件包裝以後再返回。 </p>
+<p><a href="http://huziketang.mangojuice.top/books/react/lesson38" target="_blank" rel="noopener">http://huziketang.mangojuice.top/books/react/lesson38</a></p>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/react/script/doc.js"></script>
+
+    
+
+  </body>
+</html>

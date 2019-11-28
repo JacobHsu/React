@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+[![NPM](https://nodei.co/npm/qrcode.react.png?downloads=true&stars=true)](https://nodei.co/npm/qrcode.react/)
+
 ## Available Scripts
 
 In the project directory, you can run:

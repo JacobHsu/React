@@ -16,6 +16,12 @@ npm start
 
 ## mock 
 
+
+## note
+
+JSX 是 `createElement` 的語法糖
+[babeljs](https://babeljs.io/repl#?browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwCwjABAxgNghgZwQXgEQDs4FsCmqB8IOMMA9hAE45xQAuwA9OPkA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.7.7&externalPlugins=)
+
 ### public
 public\mock\data.json   
 http://localhost:3000/mock/data.json  

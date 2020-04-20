@@ -1,5 +1,7 @@
 {
   "scripts": {
+    "b": "yarn build",
+    "d": "./deploy.sh",
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
     "build": "docusaurus-build",

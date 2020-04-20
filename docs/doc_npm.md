@@ -1,14 +1,37 @@
 ---
 id: doc1
-title: Latin-ish
+title: NPM
 sidebar_label: Example Page
 ---
 
 Check the [documentation](https://docusaurus.io) for how to use Docusaurus.
 
-## Lorem
+[![NPM](https://nodei.co/npm/connected-react-router.png?downloads=true&stars=true)](https://nodei.co/npm/connected-react-router/)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum massa eget nulla aliquet sagittis. Proin odio tortor, vulputate ut odio in, ultrices ultricies augue. Cras ornare ultrices lorem malesuada iaculis. Etiam sit amet libero tempor, pulvinar mauris sed, sollicitudin sapien.
+## connected-react-router
+
+> A Redux binding for React Router
+
+```js
+import { Provider } from 'react-redux'
+import { Route, Switch } from 'react-router' // react-router v4/v5
+import { ConnectedRouter } from 'connected-react-router'
+
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}> { /* place ConnectedRouter under Provider */ }
+      <> { /* your usual react-router v4/v5 routing */ }
+        <Switch>
+          <Route exact path="/" render={() => (<div>Match</div>)} />
+          <Route render={() => (<div>Miss</div>)} />
+        </Switch>
+      </>
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('react-root')
+)
+```
+
 
 ## Mauris In Code
 

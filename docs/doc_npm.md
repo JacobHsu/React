@@ -32,11 +32,34 @@ ReactDOM.render(
 )
 ```
 
+## react-i18next
 
-## Mauris In Code
+[![NPM](https://nodei.co/npm/react-i18next.png?downloads=true&stars=true)](https://nodei.co/npm/react-i18next/)  
+[![NPM](https://nodei.co/npm/i18next.png?downloads=true&stars=true)](https://nodei.co/npm/i18next/)  
+[![NPM](https://nodei.co/npm/i18next-browser-languagedetector.png?downloads=true&stars=true)](https://nodei.co/npm/i18next-browser-languagedetector/)  
 
-```
-Mauris vestibulum ullamcorper nibh, ut semper purus pulvinar ut. Donec volutpat orci sit amet mauris malesuada, non pulvinar augue aliquam. Vestibulum ultricies at urna ut suscipit. Morbi iaculis, erat at imperdiet semper, ipsum nulla sodales erat, eget tincidunt justo dui quis justo. Pellentesque dictum bibendum diam at aliquet. Sed pulvinar, dolor quis finibus ornare, eros odio facilisis erat, eu rhoncus nunc dui sed ex. Nunc gravida dui massa, sed ornare arcu tincidunt sit amet. Maecenas efficitur sapien neque, a laoreet libero feugiat ut.
+https://react.i18next.com/guides/quick-start
+
+```js
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+
+const options = {
+  fallbackLng: "en",
+  debug: process.env.REACT_APP_TARGET_ENV !== "prod",
+  interpolation: {
+    escapeValue: false,
+  },
+  resources: resourceBundle
+};
+
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init(options);
+
+export default i18n;
 ```
 
 ## Nulla

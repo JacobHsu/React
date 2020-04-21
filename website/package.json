@@ -1,4 +1,5 @@
 {
+  "homepage": "https://jacobhsu.github.io/react/",
   "scripts": {
     "b": "yarn build",
     "d": "./deploy.sh",

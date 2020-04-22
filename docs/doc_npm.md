@@ -62,9 +62,35 @@ i18n
 export default i18n;
 ```
 
-## Nulla
+## reselect
 
-Nulla facilisi. Maecenas sodales nec purus eget posuere. Sed sapien quam, pretium a risus in, porttitor dapibus erat. Sed sit amet fringilla ipsum, eget iaculis augue. Integer sollicitudin tortor quis ultricies aliquam. Suspendisse fringilla nunc in tellus cursus, at placerat tellus scelerisque. Sed tempus elit a sollicitudin rhoncus. Nulla facilisi. Morbi nec dolor dolor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras et aliquet lectus. Pellentesque sit amet eros nisi. Quisque ac sapien in sapien congue accumsan. Nullam in posuere ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin lacinia leo a nibh fringilla pharetra.
+Selector library for Redux  
+將selector的計算結果緩存下來，避免不必要的重複計算，可以用來做性能優化。
+
+[![NPM](https://nodei.co/npm/reselect.png?downloads=true&stars=true)](https://nodei.co/npm/reselect/)
+
+```js
+import { createSelector } from 'reselect'
+
+const shopItemsSelector = state => state.shop.items
+
+const subtotalSelector = createSelector(
+  shopItemsSelector,
+  items => items.reduce((acc, item) => acc + item.value, 0)
+)
+
+let exampleState = {
+  shop: {
+    taxPercent: 8,
+    items: [
+      { name: 'apple', value: 1.20 },
+      { name: 'orange', value: 0.95 },
+    ]
+  }
+}
+
+console.log(subtotalSelector(exampleState)) // 2.15
+```
 
 ## Orci
 

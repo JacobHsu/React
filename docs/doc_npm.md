@@ -92,9 +92,20 @@ let exampleState = {
 console.log(subtotalSelector(exampleState)) // 2.15
 ```
 
-## Orci
+## mobile-detect
 
-Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin venenatis lectus dui, vel ultrices ante bibendum hendrerit. Aenean egestas feugiat dui id hendrerit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur in tellus laoreet, eleifend nunc id, viverra leo. Proin vulputate non dolor vel vulputate. Curabitur pretium lobortis felis, sit amet finibus lorem suscipit ut. Sed non mollis risus. Duis sagittis, mi in euismod tincidunt, nunc mauris vestibulum urna, at euismod est elit quis erat. Phasellus accumsan vitae neque eu placerat. In elementum arcu nec tellus imperdiet, eget maximus nulla sodales. Curabitur eu sapien eget nisl sodales fermentum.
+[![NPM](https://nodei.co/npm/mobile-detect.png?downloads=true&stars=true)](https://nodei.co/npm/mobile-detect/)
+
+src\utils\isMobile.js
+
+```js
+import MobileDetect from "mobile-detect";
+
+export default () => {
+  const md = new MobileDetect(window.navigator.userAgent);
+  return Boolean(md.mobile() || md.phone());
+};
+```
 
 ## Phasellus
 

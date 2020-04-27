@@ -3,6 +3,8 @@ id: doc2
 title: Document
 ---
 
+Check the [documentation](https://docusaurus.io) for how to use Docusaurus.
+
 This is a link to [another document.](doc_org.md)  
 This is a link to an [external page.](http://www.example.com)
 

@@ -1,7 +1,7 @@
 ---
 id: doc1
 title: NPM
-sidebar_label: Example Page
+sidebar_label: node_modules
 ---
 
 Check the [documentation](https://docusaurus.io) for how to use Docusaurus.

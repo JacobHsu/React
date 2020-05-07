@@ -31,3 +31,14 @@ class App extends React.Component {
 }
 export default App;
 ```
+
+## state
+
+State can **only** be updated using the function `setState`
+
+## super
+
+to make sure that the parents or react components constructor gets called 
+we call super with props `super(props);`
+
+Super is a reference to the parent's constructor function

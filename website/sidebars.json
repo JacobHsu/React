@@ -1,6 +1,7 @@
 {
   "docs": {
     "NPM": ["doc1", "doc1_middleware"],
+    "Docs": ["docs"],
     "Docusaurus": ["doc2"],
     "UI": ["doc3"],
     "Org Category": ["doc6"]

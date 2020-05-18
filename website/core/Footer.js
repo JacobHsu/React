@@ -43,7 +43,7 @@ class Footer extends React.Component {
             <a href={this.docUrl('doc2.html', this.props.language)}>
               Guides (or other categories)
             </a>
-            <a href={this.docUrl('doc3.html', this.props.language)}>
+            <a href={this.docUrl('exampledoc4.html', this.props.language)}>
               API Reference (or other categories)
             </a>
             <a href={this.docUrl('doc6.html', this.props.language)}>
@@ -63,7 +63,7 @@ class Footer extends React.Component {
             </a>
             <a href="https://discordapp.com/">Project Chat</a>
             <a
-              href="https://twitter.com/"
+              href="https://twitter.com/reactjs/"
               target="_blank"
               rel="noreferrer noopener">
               Twitter
@@ -72,7 +72,7 @@ class Footer extends React.Component {
           <div>
             <h5>More</h5>
             <a href={`${this.props.config.baseUrl}blog`}>Blog</a>
-            <a href="https://github.com/">GitHub</a>
+            <a href="https://github.com/facebook/react">GitHub</a>
             <a
               className="github-button"
               href={this.props.config.repoUrl}

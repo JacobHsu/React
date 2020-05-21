@@ -155,3 +155,23 @@ react
     │       └── undraw_youtube_tutorial.svg
     └── yarn.lock
 ```
+
+### 文章連結淡藍樣式
+
+static\css\react-native.css  
+react\website\static\css\custom.css
+
+```css
+/* your custom css */
+article p a,
+article li a {
+    background-color: rgba(187, 239, 253, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+article p a:hover,
+article li a:hover {
+  background-color: #bbeffd;
+  border-bottom-color: $text;
+}
+```

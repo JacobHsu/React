@@ -6,6 +6,19 @@
  */
  
 /* your custom css */
+article p a,
+article li a {
+    background-color: rgba(187, 239, 253, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+article p a:hover,
+article li a:hover {
+  background-color: #bbeffd;
+  border-bottom-color: $text;
+}
+
+
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }

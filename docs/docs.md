@@ -57,3 +57,33 @@ class Welcome extends React.Component {
 
 但是，React 16.8中增加的 [Hook](https://zh-hant.reactjs.org/docs/hooks-intro.html) 的出現改變了一切。functional component 現今也能夠使用 state 了。它讓你不必寫 class 就能使用 state 以及其他 React 的功能。
 
+```js
+const UserForm = () => {
+    return (
+        <form>
+            <label>Enter a username:</label>
+            <input />
+        </form>
+    );
+}
+
+// Renders the App component into a div with id 'root'
+ReactDOM.render(<UserForm />, document.querySelector('#root'));
+```
+
+```js
+class UserForm extends React.Component {
+    render() {
+        return (
+            <form>
+                <label>Enter a username:</label>
+                <input />
+            </form>
+        );
+    }
+}
+
+
+// Renders the App component into a div with id 'root'
+ReactDOM.render(<UserForm />, document.querySelector('#root'));
+```

@@ -86,4 +86,63 @@
 <p>上述兩種 component 在 React 中是同等的。</p>
 <p>在 react-hooks 出現以前，react 專案基本上會看到兩種型態的 component ，一種是 functional 函式型寫法，另一種則是的 class 寫法。原因在於在過去只有 class-based component 可以使用 state 與 lifecycle ，而 functional component 基本上只負責單純呈現資料，有可能是寫死的資料，或是透過 props 傳來的資訊。</p>
 <p>但是，React 16.8中增加的 <a href="https://zh-hant.reactjs.org/docs/hooks-intro.html">Hook</a> 的出現改變了一切。functional component 現今也能夠使用 state 了。它讓你不必寫 class 就能使用 state 以及其他 React 的功能。</p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/react/docs/doc1_middleware"><span class="arrow-prev">← </span><span>middleware</span></a><a class="docs-next button" href="/react/docs/doc2"><span>Document</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#components-與-props">Components 與 Props</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/react/" class="nav-home"><img src="/react/img/favicon.ico" alt="React Doc" width="66" height="58"/></a><div><h5>Docs</h5><a href="/react/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/react/docs/en/doc2.html">Guides (or other categories)</a><a href="/react/docs/en/exampledoc4.html">API Reference (or other categories)</a><a href="/react/docs/en/doc6.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/react/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/reactjs/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/react/blog">Blog</a><a href="https://github.com/facebook/react">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/react/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Jacob Hsu React Docs</section></footer></div></body></html>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> UserForm = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Enter a username:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
+    );
+}
+
+<span class="hljs-comment">// Renders the App component into a div with id 'root'</span>
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">UserForm</span> /&gt;</span></span>, <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#root'</span>));
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserForm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Enter a username:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">input</span> /&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
+        );
+    }
+}
+
+
+<span class="hljs-comment">// Renders the App component into a div with id 'root'</span>
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">UserForm</span> /&gt;</span></span>, <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#root'</span>));
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="updating-components-with-state"></a><a href="#updating-components-with-state" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Updating Components with State</h3>
+<pre><code class="hljs css language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clock</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    componentDidMount() {
+        setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+            <span class="hljs-keyword">this</span>.time = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().toLocaleTimeString()
+        }, <span class="hljs-number">1000</span>)
+    }
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"time"</span>&gt;</span>
+                The time is: {this.time}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+        );
+    }
+}
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clock</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    state = {<span class="hljs-attr">time</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().toLocaleTimeString()}
+    componentDidMount() {
+        setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+            <span class="hljs-keyword">this</span>.setState( {<span class="hljs-attr">time</span> : <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().toLocaleTimeString() })
+        }, <span class="hljs-number">1000</span>)
+    }
+    render() {
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"time"</span>&gt;</span>
+                The time is: {this.state.time}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+        );
+    }
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/react/docs/doc1_middleware"><span class="arrow-prev">← </span><span>middleware</span></a><a class="docs-next button" href="/react/docs/doc2"><span>Document</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#components-與-props">Components 與 Props</a><ul class="toc-headings"><li><a href="#updating-components-with-state">Updating Components with State</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/react/" class="nav-home"><img src="/react/img/favicon.ico" alt="React Doc" width="66" height="58"/></a><div><h5>Docs</h5><a href="/react/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/react/docs/en/doc2.html">Guides (or other categories)</a><a href="/react/docs/en/exampledoc4.html">API Reference (or other categories)</a><a href="/react/docs/en/doc6.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/react/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/reactjs/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/react/blog">Blog</a><a href="https://github.com/facebook/react">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/react/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Jacob Hsu React Docs</section></footer></div></body></html>
